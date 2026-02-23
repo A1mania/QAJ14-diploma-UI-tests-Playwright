@@ -9,6 +9,5 @@ export const test = baseTest.extend<MyFixture>({
         toolShop: async ({ page }, use) => {
         await use(new ToolShop(page));
     }
-
 });
 

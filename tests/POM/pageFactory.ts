@@ -8,7 +8,6 @@ import { CartPage } from './cartPage';
 
 export class ToolShop  {
     readonly basePage: BasePage;
-    readonly loginPage: LoginPage;
     readonly inventoryPage: InventoryPage;
     readonly inventoryItemPage: InventoryItemPage;
     readonly layout: Layout;
@@ -16,7 +15,6 @@ export class ToolShop  {
 
 constructor (page: Page) {
     this.basePage = new BasePage (page, 'https://practicesoftwaretesting.com/');
-    this.loginPage = new LoginPage(page);
     this.inventoryPage = new InventoryPage(page);
     this.inventoryItemPage = new InventoryItemPage(page);
     this.layout = new Layout(page);

@@ -8,7 +8,9 @@ test.describe("Inventory page Tests", () => {
     await expect(page).toHaveURL("https://practicesoftwaretesting.com/");
   });
 
-  test("each product card contains name and price", async ({ toolShop }) => {
+  test("each product card contains name and price and co2rate", async ({
+    toolShop,
+  }) => {
     const cardsCount = await toolShop.inventoryPage.getInventoryCardsCount();
     for (let i = 0; i < cardsCount; i++) {
       const card = toolShop.inventoryPage.inventoryCards.nth(i);
@@ -35,7 +37,7 @@ test.describe("Inventory page Tests", () => {
     const itemNames = await toolShop.inventoryPage.inventoryCards
       .locator(".card-body .card-title")
       .allInnerTexts();
-    const sortedNames = [...itemNames].sort();
+    const sortedNames = [...itemNames].sort(); // Create a sorted copy of the names+sort them in ascending order
     expect(itemNames).toEqual(sortedNames);
   });
 
@@ -90,8 +92,8 @@ test.describe("Inventory page Tests", () => {
   }) => {
     await toolShop.inventoryPage.searchForProduct("NonExistingProduct");
     await expect(
-    toolShop.inventoryPage.page.locator("[data-test='no-results']")
-  ).toBeVisible();
+      toolShop.inventoryPage.page.locator("[data-test='no-results']"),
+    ).toBeVisible();
     const searchResultsCount =
       await toolShop.inventoryPage.getInventoryCardsCount();
     expect(searchResultsCount).toBe(0);
